@@ -12,7 +12,7 @@ icon = pygame.image.load('assets/icon.png')
 pygame.display.set_icon(icon)
 
 running = True
-#pd
+
 while running:
 
     for event in pygame.event.get():
