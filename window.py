@@ -37,6 +37,8 @@ while running:
             player.walk()
         if keystate[pygame.K_UP]:
             player.walk()
+        if keystate[pygame.K_DOWN]:
+            player.walk()
 
     screen.fill((255, 255, 255))
     moving_sprites.draw(screen)
