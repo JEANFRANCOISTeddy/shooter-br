@@ -3,6 +3,7 @@ import sys
 from classes import Player
 
 pygame.init()
+clock = pygame.time.Clock()
 
 # Game screen
 display_width = 1000
@@ -23,16 +24,22 @@ moving_sprites.add(player)
 
 while running:
 
+    keystate = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
             print("Window closed")
             sys.exit()
-        if event.type == pygame.K_RIGHT:
-            player.walk_right()
+        if keystate[pygame.K_RIGHT]:
+            player.walk()
+        if keystate[pygame.K_LEFT]:
+            player.walk()
+        if keystate[pygame.K_UP]:
+            player.walk()
 
     screen.fill((255, 255, 255))
     moving_sprites.draw(screen)
     moving_sprites.update(0.25)
     pygame.display.flip()
+    clock.tick(30)

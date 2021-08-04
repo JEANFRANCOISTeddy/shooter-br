@@ -8,6 +8,9 @@ class Player(pygame.sprite.Sprite):
         self.sprites = []
 
         self.load_assets('walk_right_')
+        self.load_assets('walk_left_')
+        self.load_assets('walk_up_')
+        self.load_assets('walk_down_')
 
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
@@ -17,11 +20,12 @@ class Player(pygame.sprite.Sprite):
     def load_assets(self, path):
         for i in range(4):
             new_path = path + str(i+1)
-            self.sprites.append(pygame.image.load('./assets/character/' + new_path + '.png'))
+            picture = pygame.image.load('./assets/character/' + new_path + '.png')
+            picture = pygame.transform.scale2x(picture)
+            self.sprites.append(picture)
 
-    def walk_right(self):
+    def walk(self):
         self.walk_animation = True
-        print("ok")
 
     def update(self, speed):
         if self.walk_animation:
