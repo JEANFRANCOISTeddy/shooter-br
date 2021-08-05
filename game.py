@@ -31,7 +31,7 @@ class Game:
 
         # A container class to hold and manage multiple Sprite objects.
         moving_sprites = pygame.sprite.Group()
-        player = Player.Player(400, 400)
+        player = Player.Player(400, 400, 5)
         moving_sprites.add(player)
 
         while running:
@@ -49,12 +49,16 @@ class Game:
 
             if key_input[pygame.K_RIGHT]:
                 player.walk()
+                player.walk_right()
             elif key_input[pygame.K_LEFT]:
                 player.walk()
+                player.walk_left()
             elif key_input[pygame.K_UP]:
                 player.walk()
+                player.walk_up()
             elif key_input[pygame.K_DOWN]:
                 player.walk()
+                player.walk_down()
 
             self.screen.fill((255, 255, 255))
             moving_sprites.draw(self.screen)
