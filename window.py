@@ -19,29 +19,32 @@ running = True
 
 # A container class to hold and manage multiple Sprite objects.
 moving_sprites = pygame.sprite.Group()
-player = Player.Player(100, 100)
+player = Player.Player(400, 400)
 moving_sprites.add(player)
 
 while running:
 
-    keystate = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-            pygame.quit()
             print("Window closed")
             sys.exit()
-        if keystate[pygame.K_RIGHT]:
-            player.walk()
-        if keystate[pygame.K_LEFT]:
-            player.walk()
-        if keystate[pygame.K_UP]:
-            player.walk()
-        if keystate[pygame.K_DOWN]:
-            player.walk()
+
+    keyInput = pygame.key.get_pressed()
+
+    if keyInput[pygame.K_RIGHT]:
+        player.walk()
+    elif keyInput[pygame.K_LEFT]:
+        player.walk()
+    elif keyInput[pygame.K_UP]:
+        player.walk()
+    elif keyInput[pygame.K_DOWN]:
+        player.walk()
 
     screen.fill((255, 255, 255))
     moving_sprites.draw(screen)
     moving_sprites.update(0.25)
     pygame.display.flip()
     clock.tick(30)
+
+pygame.quit()

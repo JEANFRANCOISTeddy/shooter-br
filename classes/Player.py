@@ -6,22 +6,20 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.walk_animation = False
         self.sprites = []
-
-        self.load_assets('walk_right_')
-        self.load_assets('walk_left_')
-        self.load_assets('walk_up_')
-        self.load_assets('walk_down_')
-
+        self.load_assets('walk_right_', 2)
+        self.load_assets('walk_left_', 2)
+        self.load_assets('walk_up_', 2)
+        self.load_assets('walk_down_', 2)
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
         self.rect = self.image.get_rect()
         self.rect.topleft = [pos_x, pos_y]
 
-    def load_assets(self, path):
+    def load_assets(self, path, scale):
         for i in range(4):
             new_path = path + str(i+1)
             picture = pygame.image.load('./assets/character/' + new_path + '.png')
-            picture = pygame.transform.scale2x(picture)
+            picture = pygame.transform.scale(picture, (int(picture.get_width() * scale), picture.get_height() * scale))
             self.sprites.append(picture)
 
     def walk(self):
